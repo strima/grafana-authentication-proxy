@@ -1,0 +1,35 @@
+{
+  "name": "grafana-authentication-proxy",
+  "version": "1.1.0",
+  "description": "Hosts the latest grafana and elasticsearch behind Google OAuth2, Basic Auth or CAS Authentication",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/strima/grafana-authentication-proxy"
+  },
+  "keywords": [
+    "grafana",
+    "elasticsearch",
+    "authentication",
+    "oauth2",
+    "basic authentication"
+  ],
+  "author": "strima",
+  "license": "MIT",
+  "copyright": "strima",
+  "dependencies": {
+    "express": "3.*",
+    "passport": "*",
+    "passport-google-oauth": "*",
+    "connect-restreamer": "*",
+    "cas": "*"
+  },
+  "devDependencies": {
+  },
+  "bugs": {
+    "url": "https://github.com/strima/grafana-authentication-proxy/issues"
+  }
+}

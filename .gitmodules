@@ -1,0 +1,3 @@
+[submodule "grafana"]
+	path = grafana
+	url = https://github.com/torkelo/grafana.git
