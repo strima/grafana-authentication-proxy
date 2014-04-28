@@ -87,11 +87,20 @@ module.exports =  {
     // The following config is different from the previous basic auth settings.
     // It will be applied on the client who access grafana.
     // Enable? true or false
-    "enable_basic_auth": true,
-    "basic_auth_file": "REPLACE_WITH_YOUR_BASIC_AUTH_FILE_LOCATION",
+    "enable_basic_auth": false,
+    // If basic_auth_file is specified and exists, the user password combinations
+    // are read from the named file and overrule the here defined settings from
+    // array basic_auth_users.
+    // File format is one combination per line split by first appearing colon
+    // e.g.
+    // user1:password1
+    // user2:password2
+    "basic_auth_file": "",
         // Multiple user/passwd supported
         // The User&Passwd list for basic auth
         "basic_auth_users": [
+            {"user": "demo1", "password": "pwd1"},
+            {"user": "demo1", "password": "pwd2"},
         ],
 
 
