@@ -16,6 +16,8 @@ var fs = require('fs');
 var config = require('./config');
 var app = express();
 
+app.use(express.logger());
+
 console.log('Server starting...');
 
 if (!config.base_path) {
