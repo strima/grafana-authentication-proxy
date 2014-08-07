@@ -46,6 +46,10 @@ require('./lib/cas-auth.js').configureCas(express, app, config);
 require('./lib/es-proxy').configureESProxy(app, config.es_host, config.es_port,
           config.es_username, config.es_password, config.base_path);
 
+// Setup Graphite proxy
+require('./lib/gr-proxy').configureGRProxy(app, config.gr_host, config.gr_port,
+          config.gr_username, config.gr_password, config.base_path);
+
 // Serve config.js for grafana
 // We should use special config.js for the frontend and point the ES to __es/
 app.get(config.base_path + '/config.js', grafanaconfigjs);
@@ -94,7 +98,7 @@ function grafanaconfigjs(req, res) {
 
   res.setHeader('Content-Type', 'application/javascript');
   res.end("define(['settings'], " +
-    "function (Settings) {'use strict'; return new Settings({elasticsearch: '" + config.base_path + "/__es', graphiteUrl: '" + graphiteUrl + "', default_route     : '/dashboard/file/default.json'," +
+    "function (Settings) {'use strict'; return new Settings({elasticsearch: '" + config.base_path + "/__es', graphiteUrl: '" + config.base_path + "/__gr', default_route     : '/dashboard/file/default.json'," +
       "grafana_index: '" +
       getGrafanaIndex() +
       "', timezoneOffset: null, panel_names: ['text','graphite'] }); });");
