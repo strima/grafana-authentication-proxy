@@ -108,7 +108,7 @@ function grafanaconfigjs(req, res) {
        		"url: '"+ config.base_path + "/__gr', "+
         	"default: true"+
       		"},"+
-                "grafana: {"+
+                "grafana-dashboards: {"+
                 "type: 'influxdb',"+
                 "url: 'http://"+ config.influxdb_host + ":8086/db/"+ config.grafanadb_dbname +"', "+
 		"username: '"+ config.grafanadb_user +"',"+

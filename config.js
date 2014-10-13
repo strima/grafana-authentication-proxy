@@ -9,7 +9,7 @@ module.exports =  {
     "es_username":  "",  // The basic authentication user of ES server, leave it blank if no basic auth applied
     "es_password":  "",  // The password of basic authentication of ES server, leave it blank if no basic auth applied.
 
-    "base_path": "/grafana",
+    "base_path": "",
 
     "influxdb_host": "influx_servername_here",
 
