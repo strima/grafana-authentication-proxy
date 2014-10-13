@@ -11,6 +11,12 @@ module.exports =  {
 
     "base_path": "/grafana",
 
+    "influxdb_host": "influx_servername_here",
+
+    "grafanadb_dbname": "grafana-dashboards",
+    "grafanadb_user": "dashboarduser",
+    "grafanadb_password": "dashboardpassword",
+
     ////////////////////////////////////
     // Proxy server configurations
     ////////////////////////////////////
@@ -51,7 +57,7 @@ module.exports =  {
      * in nginx or apache for cross origin domain sharing to work (CORS).
      * Check install documentation on github
      */
-    "graphiteUrl": "http://"+window.location.hostname+":8080",
+    "graphiteUrl": "http://"+window.location.hostname+":8000",
     
     ////////////////////////////////////
     // Security Configurations
