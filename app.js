@@ -29,8 +29,7 @@ app.use(express.cookieParser());
 app.use(express.session({ secret: config.cookie_secret }));
 
 // Authentication
-if (config.enable_basic_auth && config.basic_auth_file && fs.existsSync(config.basic_auth_file)) {
-    console.log('basic_auth_file defined and found, so reading it ...');
+function readAndInitBasicAuthFile() {
     config.basic_auth_users=new Array();
     var basic_auth_users=fs.readFileSync(config.basic_auth_file,'utf8');
     var userpass=basic_auth_users.split('\n');
@@ -41,6 +40,17 @@ if (config.enable_basic_auth && config.basic_auth_file && fs.existsSync(config.b
         }
     }
 }
+if (config.enable_basic_auth && config.basic_auth_file && fs.existsSync(config.basic_auth_file)) {
+    console.log('basic_auth_file defined and found, so reading it ...');
+    readAndInitBasicAuthFile();
+    fs.watchFile(config.basic_auth_file, { persistent: true, interval: 5007 }, function(curr,prev) {
+        if (curr.mtime.getTime() != prev.mtime.getTime()) {
+            console.log('BASIC AUTH File was changed, so reloading values');
+            readAndInitBasicAuthFile();
+        }
+    });
+}
+
 require('./lib/basic-auth').configureBasic(express, app, config);
 require('./lib/google-oauth').configureOAuth(express, app, config);
 require('./lib/cas-auth.js').configureCas(express, app, config);
