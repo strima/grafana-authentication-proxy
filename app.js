@@ -111,8 +111,25 @@ function grafanaconfigjs(req, res) {
 
   res.setHeader('Content-Type', 'application/javascript');
   res.end("define(['settings'], " +
-    "function (Settings) {'use strict'; return new Settings({elasticsearch: '" + config.base_path + "/__es', graphiteUrl: '" + config.base_path + "/__gr', default_route     : '/dashboard/file/default.json'," +
-      "grafana_index: '" +
-      getGrafanaIndex() +
-      "', timezoneOffset: null, panel_names: ['text','graphite'] }); });");
+    "function (Settings) {'use strict'; return new Settings({"+
+	"datasources: {"+
+      		"graphite_api: {"+
+        	"type: 'graphite',"+
+       		"url: '"+ config.base_path + "/__gr', "+
+        	"default: true"+
+      		"},"+
+                "grafanadashboards: {"+
+                "type: 'influxdb',"+
+                "url: 'http://"+ config.influxdb_host + ":8086/db/"+ config.grafanadb_dbname +"', "+
+		"username: '"+ config.grafanadb_user +"',"+
+		"password: '"+ config.grafanadb_password +"',"+
+                "grafanaDB: true"+
+		"},"+
+        "},"+
+	
+	//"elasticsearch: '" + config.base_path + "/__es',"+
+	"default_route     : '/dashboard/file/default.json'," +
+        "grafana_index: '" +
+        getGrafanaIndex() +
+        "', timezoneOffset: null, panel_names: ['text','graphite'] }); });");
 }

@@ -9,7 +9,13 @@ module.exports =  {
     "es_username":  "",  // The basic authentication user of ES server, leave it blank if no basic auth applied
     "es_password":  "",  // The password of basic authentication of ES server, leave it blank if no basic auth applied.
 
-    "base_path": "/grafana",
+    "base_path": "",
+
+    "influxdb_host": "influx_servername_here",
+
+    "grafanadb_dbname": "grafana-dashboards",
+    "grafanadb_user": "dashboarduser",
+    "grafanadb_password": "dashboardpassword",
 
     ////////////////////////////////////
     // Proxy server configurations
@@ -51,7 +57,7 @@ module.exports =  {
      * in nginx or apache for cross origin domain sharing to work (CORS).
      * Check install documentation on github
      */
-    "graphiteUrl": "http://"+window.location.hostname+":8080",
+    "graphiteUrl": "http://"+window.location.hostname+":8000",
     
     ////////////////////////////////////
     // Security Configurations
